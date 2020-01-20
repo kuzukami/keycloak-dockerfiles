@@ -15,6 +15,11 @@ if [ $? -ne 0 ]; then
   echo -e "$HOST_IP\t$HOST_DOMAIN" >> /etc/hosts
 fi
 
+#環境変数テンプレートの展開
+cat /etc/httpd/conf.d/proxy.conf.in | \
+bash /opt/custom-envsubst.sh \
+> /etc/httpd/conf.d/proxy.conf
+
 # プロキシ設定を標準出力に出力する
 cat /etc/httpd/conf.d/proxy.conf
 
