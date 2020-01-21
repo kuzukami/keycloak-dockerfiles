@@ -41,5 +41,8 @@ EXPOSE 80
 COPY docker-entrypoint.sh /opt/
 RUN chmod -v +x /opt/docker-entrypoint.sh
 
+COPY custom-envsubst.sh /opt/
++RUN chmod -v +x /opt/custom-envsubst.sh
+
 # ENTRYPOINTに初期起動シェルパスを設定
 ENTRYPOINT [ "/opt/docker-entrypoint.sh" ]
