@@ -1,5 +1,5 @@
 # Dockerイメージの指定
-FROM centos:centos7.6.1810
+FROM centos:centos7.7.1908
 
 # 各種バージョンの定義
 #ENV HTTPD_VERSION=2.4.6-88.el7.centos \
