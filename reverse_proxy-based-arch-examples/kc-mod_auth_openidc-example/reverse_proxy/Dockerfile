@@ -9,12 +9,13 @@ FROM centos:centos7.7.1908
 #    CJOSE_VERSION=0.5.1-1.el7.centos.x86_64
 
 # iproute と Apache HTTPD Serverインストール
-#  && yum install -y iproute \
 
 #全部yum defaultを利用=＞実験性の最小化、保守性互換性の最大化
 # => gettext => envsubstを使いたい
+# => iproute =>  右のために利用する[pingチェック後、名前解決出来ない場合は、hostsに追加する。]
 RUN set -x \
   && yum install -y httpd mod_auth_openidc \
+  && yum install -y iproute \
   && yum install -y gettext  \
   && yum clean all 
 
