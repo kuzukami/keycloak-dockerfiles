@@ -22,7 +22,8 @@ echo 9;fgrep "${OIDCClientSecret}" .genresult.disposable
 echo 10;fgrep "${OIDCSessionType}" .genresult.disposable
 echo 11;fgrep "${OIDCSessionInactivityTimeout}" .genresult.disposable
 echo 12;fgrep "${OIDCSessionMaxDuration}" .genresult.disposable
-echo '12/12 success'
+echo 13;fgrep "${Debug_Trace_Comment}" .genresult.disposable
+echo '13/13 success'
 
 rm -f .genresult.disposable
 

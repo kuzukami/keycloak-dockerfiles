@@ -9,4 +9,5 @@ sed "s|OIDCClientID.demo-app1|${OIDCClientID}|" | \
 sed "s|OIDCClientSecret.secret|${OIDCClientSecret}|" | \
 sed "s|client-cookie:persistent|${OIDCSessionType}|" | \
 sed "s|31536000|${OIDCSessionInactivityTimeout}|" | \
-sed "s|15432|${OIDCSessionMaxDuration}|"
+sed "s|15432|${OIDCSessionMaxDuration}|" | \
+sed "s|#Debug_Trace#|${Debug_Trace_Comment}|"
