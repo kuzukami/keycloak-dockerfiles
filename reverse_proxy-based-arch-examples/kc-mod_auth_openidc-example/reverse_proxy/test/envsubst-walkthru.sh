@@ -2,15 +2,10 @@
 
 set -eu
 
-export OIDCCookiePasswd=cpasswd
-export OIDCCookieDomain=dom
-export OIDCMetadataURL=meda
-export OIDCUnmatchedDefaultServerName=defhoge.com
-export OIDCRevProxyFrontServerName=fronturi.hogehooge.com
-export OIDCRevProxyBackendServerURL=http://backeng1.local:80/
-export OIDRevProxyTokenReceiveURL=https://fronturi.hogehoge.com/token-receipt
-export OIDCClientID=revpro-exampleclient
-export OIDCClientSecret=x12345
+
+(
+set -o allexport
+source ../sample.env
 
 cat ../proxy.conf | \
 bash ../custom-envsubst.sh > .genresult.disposable
@@ -24,6 +19,11 @@ echo 6;fgrep "${OIDCRevProxyBackendServerURL}" .genresult.disposable
 echo 7;fgrep "${OIDRevProxyTokenReceiveURL}" .genresult.disposable
 echo 8;fgrep "${OIDCClientID}" .genresult.disposable
 echo 9;fgrep "${OIDCClientSecret}" .genresult.disposable
-echo '9/9 success'
+echo 10;fgrep "${OIDCSessionType}" .genresult.disposable
+echo 11;fgrep "${OIDCSessionInactivityTimeout}" .genresult.disposable
+echo 12;fgrep "${OIDCSessionMaxDuration}" .genresult.disposable
+echo '12/12 success'
 
 rm -f .genresult.disposable
+
+)

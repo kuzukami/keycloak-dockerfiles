@@ -1,5 +1,5 @@
 # Dockerイメージの指定
-FROM centos:centos7.7.1908
+FROM centos:centos8.1.1911
 
 # 各種バージョンの定義
 #ENV HTTPD_VERSION=2.4.6-88.el7.centos \
@@ -14,6 +14,7 @@ FROM centos:centos7.7.1908
 # => gettext => envsubstを使いたい
 # => iproute =>  右のために利用する[pingチェック後、名前解決出来ない場合は、hostsに追加する。]
 RUN set -x \
+  && yum module enable -y mod_auth_openidc \
   && yum install -y httpd mod_auth_openidc \
   && yum install -y iproute \
   && yum install -y gettext  \

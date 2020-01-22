@@ -6,4 +6,7 @@ sed "s|ServerName.app1.example.com|${OIDCRevProxyFrontServerName}|" | \
 sed "s|http://host.docker.internal:8081/|${OIDCRevProxyBackendServerURL}|" | \
 sed "s|https://app1.example.com/oidc-redirect/|${OIDRevProxyTokenReceiveURL}|" | \
 sed "s|OIDCClientID.demo-app1|${OIDCClientID}|" | \
-sed "s|OIDCClientSecret.secret|${OIDCClientSecret}|"
+sed "s|OIDCClientSecret.secret|${OIDCClientSecret}|" | \
+sed "s|client-cookie:persistent|${OIDCSessionType}|" | \
+sed "s|31536000|${OIDCSessionInactivityTimeout}|" | \
+sed "s|15432|${OIDCSessionMaxDuration}|"
