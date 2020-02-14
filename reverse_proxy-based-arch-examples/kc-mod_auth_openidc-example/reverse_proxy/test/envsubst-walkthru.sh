@@ -7,7 +7,7 @@ set -eu
 set -o allexport
 source ./sample.env.test
 
-cat ../proxy.conf | \
+cat ../proxy.conf.autogen_envsubst | \
 bash ../custom-envsubst.sh > .genresult.disposable
 
 for seq in $(seq -w 1 99); do 

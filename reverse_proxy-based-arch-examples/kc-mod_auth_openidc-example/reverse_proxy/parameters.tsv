@@ -7,6 +7,8 @@ OIDCProviderMetadataURL	[mod_auth_openidc] OP(Keycloak)のメタデータURLの�
 OIDCPassClaimsAs	[mod_auth_openidc] クレームの連携方法の設定 	headers	OIDCPassClaimsAs.headers
 LimitRequestFieldSize	[httpd/alb] header 許容サイズの拡大=albmax cookieでのtoken保持能力を上げるため。 	64000	64000
 ServerName	[httpd/revprox] openidのリバースプロクシURL 目的:実際にリクエストを受けるURL 	sso.example.com	ServerName.app1.example.com
+LogFormat	[httpd] httpd のアクセスログフォーマット定義	"receipttime:%{%F %T %z}t\tforwardedfor:%{X-Forwarded-For}i\tforwardedhost:%{X-Forwarded-Host}i\forwardedproto:%{X-Forwarded-Proto}i\thost:%h\tuser:%u\treq:%r\tstatus:%>s\tmethod:%m\tpath:%U%q\tsize:%B\treferer:%{Referer}i\tua:%{User-Agent}i\treqtime_microsec:%D\tcache:%{X-Cache}o\truntime:%{X-Runtime}o\tvhost:%{Host}i\tKC__AUTH_SESSION_ID=%{AUTH_SESSION_ID}i\trelayserverip=%A\tcookie:%{cookie}i\tset_cookie:%{Set-Cookie}o\tOIDC_CLAIM_username:%{OIDC_CLAIM_username}e" ltsv_combinedio	@LOGFORMAT@ ltsv_combinedio
+CustomLog	[httpd] httpd のアクセスログファイルとフォーマット 	"logs/access_log" ltsv_combinedio	@LOGFILE@ ltsv_combinedio
 ProxyPass	[httpd/revprox] プロキシパス設定(-> app1コンテナ) 	/ http://host.docker.internal:8083/	/ http://host.docker.internal:8081/
 OIDCRedirectURI	[mod_auth_openidc] リダイレクトURIの設定  目的: 自前側のTokenの受け口(RP一致要求) 	https://sso.example.com/oidc-redirect/	https://app1.example.com/oidc-redirect/
 OIDCClientID	[mod_auth_openidc] OP(Keycloak)に設定されているクライアントIDの設定(RP一致要求) 	demo-app1	OIDCClientID.demo-app1

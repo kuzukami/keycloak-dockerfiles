@@ -16,7 +16,7 @@ if [ $? -ne 0 ]; then
 fi
 
 #環境変数テンプレートの展開
-cat /etc/httpd/conf.d/proxy.conf.in | \
+cat /etc/httpd/conf.d/proxy.conf.autogen_envsubst | \
 bash /opt/custom-envsubst.sh \
 > /etc/httpd/conf.d/proxy.conf
 

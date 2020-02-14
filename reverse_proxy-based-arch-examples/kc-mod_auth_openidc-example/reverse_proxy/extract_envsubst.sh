@@ -18,14 +18,40 @@ sed -E 's|([ \t]*# PX ([^ ]*)=([^ ]*)[ ]+(.*?)\[([^\n]*)\]$)|\nTggggT:\1|g' \
 | cat
 ) > parameters.tsv
 
+(
+    # sed "s/OIDCCryptoPassphrase.password/${OIDCCookiePasswd}/" | \
+    (
+    cat parameters.tsv \
+    | awk -F'\t' '/^[^#]/{ gsub(/\\/,"\\\\\\\\",$4);;gsub(/"/,"\\\"",$4);printf "sed \"s|%s|%s|g\" | \\\n", $4, ("${" $1 "}");}'  
 
-# sed "s/OIDCCryptoPassphrase.password/${OIDCCookiePasswd}/" | \
+    echo 'cat '
+    ) > .build.sh
+
+
+    # OIDCCookiePasswd='${OIDCCookiePasswd}'
+    (
+    cat parameters.tsv \
+    | awk -F'\t' '/^[^#]/{ printf "%s='\''%s'\''\n", $1, ("${" $1 "}");}'  
+    ) >  .build.env
+
+    set -o allexport
+    source .build.env
+
+    cat proxy.conf | \
+    bash .build.sh > proxy.conf.autogen_envsubst
+
+    rm -f .build.sh .build.env
+)
+
+
+# envsubst '${OIDCCookiePasswd}' | \
 (
 cat parameters.tsv \
-| awk -F'\t' '/^[^#]/{printf "sed \"s|%s|%s|g\" | \\\n", $4, ("${" $1 "}");}'  
+| awk -F'\t' '/^[^#]/{ printf "envsubst '\''%s'\'' | \\\n", ("${" $1 "}");}'  
 
 echo 'cat '
 ) > custom-envsubst.sh
+
 
 (
 echo '#see https://docs.docker.com/compose/env-file/'; 
