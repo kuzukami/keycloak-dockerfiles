@@ -45,6 +45,9 @@ RUN set -x \
 # シンボリックリンクで出力先を標準出力(dev/stdout)、標準エラー(/dev/stderr)に設定
 RUN ln -sf /dev/stdout /var/log/httpd/access_log && ln -sf /dev/stderr /var/log/httpd/error_log
 
+#デフォルトのログ設定を削除。LTSVに変更
+RUN sed -i.bck -Ee  's|^(\s*CustomLog "logs/access_log".*)$|#Remove Default Log \1|'  conf/httpd.conf
+
 # リバプロの設定、mod_auth_openidcの設定情報の配置
 COPY proxy.conf.autogen_envsubst /etc/httpd/conf.d/proxy.conf.autogen_envsubst
 
