@@ -16,6 +16,7 @@ envsubst '${OIDCSessionInactivityTimeout}' | \
 envsubst '${OIDCSessionMaxDuration}' | \
 envsubst '${OIDCSessionType}' | \
 envsubst '${OIDCSessionCookieChunkSize}' | \
+envsubst '${OIDCPassRefreshToken}' | \
 envsubst '${OIDCCookie}' | \
 envsubst '${httpd_debugdump}' | \
 envsubst '${ServerNameForUnknownHostAccess}' | \
