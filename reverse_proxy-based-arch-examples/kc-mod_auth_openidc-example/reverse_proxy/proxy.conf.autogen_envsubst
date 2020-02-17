@@ -27,6 +27,9 @@ OIDCSSLValidateServer ${OIDCSSLValidateServer}
 # PD[mod_auth_openidc] OP(Keycloak)のメタデータURLの設定 [${OIDCProviderMetadataURL}]
 OIDCProviderMetadataURL ${OIDCProviderMetadataURL}
 
+# PD[mod_auth_openidc] IDTokenのアプリケーションへの渡し方 [${OIDCPassIDTokenAs}]
+OIDCPassIDTokenAs ${OIDCPassIDTokenAs}
+
 # PD[mod_auth_openidc] クレームの連携方法の設定 [headers]
 OIDCPassClaimsAs ${OIDCPassClaimsAs}
 #${OIDCPassClaimsAs}

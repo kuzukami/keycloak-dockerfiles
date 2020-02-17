@@ -3,6 +3,7 @@ envsubst '${OIDCCryptoPassphrase}' | \
 envsubst '${OIDCCookieDomain}' | \
 envsubst '${OIDCSSLValidateServer}' | \
 envsubst '${OIDCProviderMetadataURL}' | \
+envsubst '${OIDCPassIDTokenAs}' | \
 envsubst '${OIDCPassClaimsAs}' | \
 envsubst '${LimitRequestFieldSize}' | \
 envsubst '${LogFormat}' | \
