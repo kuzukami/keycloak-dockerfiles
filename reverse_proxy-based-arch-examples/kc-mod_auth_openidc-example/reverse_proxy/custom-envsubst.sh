@@ -5,9 +5,12 @@ envsubst '${OIDCSSLValidateServer}' | \
 envsubst '${OIDCProviderMetadataURL}' | \
 envsubst '${OIDCPassClaimsAs}' | \
 envsubst '${LimitRequestFieldSize}' | \
-envsubst '${ServerName}' | \
 envsubst '${LogFormat}' | \
 envsubst '${CustomLog}' | \
+envsubst '${DumpIOInput}' | \
+envsubst '${DumpIOOutput}' | \
+envsubst '${LogLevel}' | \
+envsubst '${ServerName}' | \
 envsubst '${ProxyPass}' | \
 envsubst '${OIDCRedirectURI}' | \
 envsubst '${OIDCClientID}' | \
@@ -18,6 +21,5 @@ envsubst '${OIDCSessionType}' | \
 envsubst '${OIDCSessionCookieChunkSize}' | \
 envsubst '${OIDCPassRefreshToken}' | \
 envsubst '${OIDCCookie}' | \
-envsubst '${httpd_debugdump}' | \
 envsubst '${ServerNameForUnknownHostAccess}' | \
 cat 
