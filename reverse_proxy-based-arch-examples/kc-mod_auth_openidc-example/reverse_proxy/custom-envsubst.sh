@@ -11,6 +11,8 @@ envsubst '${DumpIOInput}' | \
 envsubst '${DumpIOOutput}' | \
 envsubst '${LogLevel}' | \
 envsubst '${ServerName}' | \
+envsubst '${ProxyAddHeaders}' | \
+envsubst '${RequestHeader}' | \
 envsubst '${ProxyPass}' | \
 envsubst '${OIDCRedirectURI}' | \
 envsubst '${OIDCClientID}' | \

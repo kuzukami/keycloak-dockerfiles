@@ -12,6 +12,8 @@ DumpIOInput	[httpd] DumpIOInputの設定 デバッグ用 	Off	DumpIOInput.On
 DumpIOOutput	[httpd] DumpIOOutputの設定 デバッグ用 	Off	DumpIOInput.Off
 LogLevel	[httpd] httpd のログレベル 	warn	debug dumpio:trace7
 ServerName	[httpd/revprox] openidのリバースプロクシURL 目的:実際にリクエストを受けるURL 	sso.example.com	ServerName.app1.example.com
+ProxyAddHeaders	[httpd/revprox/alb] ALBはX-Forwarded-Host以外のPort,Proto,Forのプロキシヘッダつけ、Hostを付けない。中途半端。既に存在する。X-Forwarded-*の上書き、追加を防ぐ 	Off	ProxyAddHeader.Off
+RequestHeader	[httpd/revprox/alb] ALBは、X-Forwarded-Hostを追加してくれない。(20200217) 	set X-Forwarded-Host sso.example.com	set X-Forwarded-Host XerverName.app1.example.com
 ProxyPass	[httpd/revprox] プロキシパス設定(-> app1コンテナ) 	/ http://host.docker.internal:8083/	/ http://host.docker.internal:8081/
 OIDCRedirectURI	[mod_auth_openidc] リダイレクトURIの設定  目的: 自前側のTokenの受け口(RP一致要求) 	https://sso.example.com/oidc-redirect/	https://app1.example.com/oidc-redirect/
 OIDCClientID	[mod_auth_openidc] OP(Keycloak)に設定されているクライアントIDの設定(RP一致要求) 	demo-app1	OIDCClientID.demo-app1
