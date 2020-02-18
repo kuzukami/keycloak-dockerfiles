@@ -10,8 +10,11 @@ LimitRequestFieldSize	[httpd/alb] header 許容サイズの拡大=albmax cookie�
 LogFormat	[httpd] httpd のアクセスログフォーマット定義	"receipttime:%{%F %T %z}t\tforwardedfor:%{X-Forwarded-For}i\tforwardedhost:%{X-Forwarded-Host}i\tforwardedproto:%{X-Forwarded-Proto}i\thost:%h\tuser:%u\treq:%r\tstatus:%>s\tmethod:%m\tpath:%U%q\tsize:%B\treferer:%{Referer}i\tua:%{User-Agent}i\treqtime_microsec:%D\tcache:%{X-Cache}o\truntime:%{X-Runtime}o\tvhost:%{Host}i\tKC__AUTH_SESSION_ID:%{AUTH_SESSION_ID}C\trelayserverip:%A\tcookie:%{cookie}i\tset_cookie:%{Set-Cookie}o\tOIDC_CLAIM_username:%{OIDC_CLAIM_username}e" ltsv_combinedio	@LOGFORMAT@ ltsv_combinedio
 CustomLog	[httpd] httpd のアクセスログファイルとフォーマット 	"logs/access_log" ltsv_combinedio	@LOGFILE@ ltsv_combinedio
 DumpIOInput	[httpd] DumpIOInputの設定 デバッグ用 	Off	DumpIOInput.On
-DumpIOOutput	[httpd] DumpIOOutputの設定 デバッグ用 	Off	DumpIOInput.Off
+DumpIOOutput	[httpd] DumpIOOutputの設定 デバッグ用 	Off	DumpIOOutput.Off
 LogLevel	[httpd] httpd のログレベル 	warn	debug dumpio:trace7
+CookieTracking	[httpd] セキュリティのためのCookieトラッキング有効化 	on	CookieTracking.on
+CookieExpires	[httpd] セキュリティのためのCookieトラッキング有効期間 	"540 weeks"	"540 weeks"
+CookieName	[httpd] セキュリティのためのCookieトラッキングCookie名 	johokibantrackcookie	johokibantrackcookie
 ServerName	[httpd/revprox] openidのリバースプロクシURL 目的:実際にリクエストを受けるURL 	sso.example.com	ServerName.app1.example.com
 ProxyAddHeaders	[httpd/revprox/alb] ALBはX-Forwarded-Host以外のPort,Proto,Forのプロキシヘッダつけ、Hostを付けない。中途半端。既に存在する。X-Forwarded-*の上書き、追加を防ぐ 	Off	ProxyAddHeader.Off
 RequestHeader	[httpd/revprox/alb] ALBは、X-Forwarded-Hostを追加してくれない。(20200217) 	set X-Forwarded-Host sso.example.com	set X-Forwarded-Host XerverName.app1.example.com

@@ -55,6 +55,13 @@ DumpIOOutput ${DumpIOOutput}
 # PD[httpd] httpd のログレベル [warn]
 LogLevel ${LogLevel}
 
+# PD[httpd] セキュリティのためのCookieトラッキング有効化 [on]
+CookieTracking ${CookieTracking}
+# PD[httpd] セキュリティのためのCookieトラッキング有効期間 [${CookieExpires}]
+CookieExpires ${CookieExpires}
+# PD[httpd] セキュリティのためのCookieトラッキングCookie名 [${CookieName}]
+CookieName ${CookieName}
+
 
 ########################################################################################
 #

@@ -11,6 +11,9 @@ envsubst '${CustomLog}' | \
 envsubst '${DumpIOInput}' | \
 envsubst '${DumpIOOutput}' | \
 envsubst '${LogLevel}' | \
+envsubst '${CookieTracking}' | \
+envsubst '${CookieExpires}' | \
+envsubst '${CookieName}' | \
 envsubst '${ServerName}' | \
 envsubst '${ProxyAddHeaders}' | \
 envsubst '${RequestHeader}' | \
